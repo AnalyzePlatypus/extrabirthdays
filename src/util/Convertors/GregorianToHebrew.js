@@ -1,6 +1,8 @@
 import { 
   jd_to_hebrew,
   hebrew_year_days,
+  hebrew_to_jd,
+  jd_to_gregorian,
   jd_to_julian,
   leap_julian,
   NormLeap,
@@ -90,9 +92,33 @@ const HEBREW_MONTHS_LEAP_YEAR__HEBREW = [];
 
 export function renderHebrewDateToEnglish({year, month, day, isLeapYear, yearType, calendar}) {
   const months = isLeapYear ? HEBREW_MONTHS_LEAP_YEAR__ENGLISH : HEBREW_MONTHS_REGULAR__ENGLISH;
-  return `${months[month]} ${day}, ${year}`
+  return `${months[month - 1]} ${day}, ${year}`
 }
 
 export function renderHebrewDateToHebrew(hebrewDateObject) {
 
+}
+
+export function hebrewDateToNextGregorianOccurence(originalHebrewDate) {
+  const currentJulianDay = gregorianDateToJulianDay(new Date());
+  const currentHebrewDate = gregorianToHebrew(new Date());
+  const currentHebrewYear = currentHebrewDate.year;
+
+  let projectedHebrewDate = deepClone(originalHebrewDate);
+  projectedHebrewDate.year = currentHebrewYear; // Start our search with today's Hebrew date
+  let projectedJulianDay = hebrewDateToJulianDay(projectedHebrewDate);
+
+  if(projectedJulianDay <= currentJulianDay) { // if we've missed this year's occurence
+    projectedHebrewDate.year += 1;
+    projectedJulianDay = hebrewDateToJulianDay(projectedHebrewDate);
+  }
+  
+  const [year, month, day] = jd_to_gregorian(projectedJulianDay);
+  return { calendar: "gregorian", year, month: month - 1, day }
+}
+
+const deepClone = obj => JSON.parse(JSON.stringify(obj));
+
+function hebrewDateToJulianDay({year, month, day}) {
+  return hebrew_to_jd(year, month + 1, day)
 }

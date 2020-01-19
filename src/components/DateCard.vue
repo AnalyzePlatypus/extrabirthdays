@@ -1,16 +1,17 @@
 <template>
   <div>
     <h2>{{calendarType}}</h2>
-    <p>{{foreignDate}}</p>
+    <p>{{foreignDate | renderDateObject}}</p>
+    <p>Next on {{foreignDate | nextGregorianOccurence | renderDateObject}}</p>
   </div>
 </template>
 
 <script>
 import validCalendarNames from "@/util/supportedCalendars.js";
 
-import { gregorian_to_julian, renderJulianDate } from "@/util/CalendarHelpers.js";
+import { gregorian_to_julian } from "@/util/CalendarHelpers.js";
 
-import { gregorianToHebrew, renderHebrewDateToEnglish } from "@/util/Convertors/GregorianToHebrew.js";
+import { gregorianToHebrew, hebrewDateToNextGregorianOccurence } from "@/util/Convertors/GregorianToHebrew.js";
 
 export default {
   name: 'DateCard',
@@ -31,11 +32,24 @@ export default {
     foreignDate() {
       switch(this.calendarType) {
         case "gregorian":
-          return  this.date.toLocaleDateString();
+          return  this.date;
         case "julian":
-          return renderJulianDate(gregorian_to_julian(this.date));
+          return gregorian_to_julian(this.date);
         case "hebrew":
-          return renderHebrewDateToEnglish(gregorianToHebrew(this.date));
+          return gregorianToHebrew(this.date);
+          break;
+        default:
+          throw new TypeError(`Unknown calendar type: \"${this.calendarType}\"`)
+      }
+    },
+    dateThisYear() {
+      switch(this.calendarType) {
+        case "gregorian":
+          return  this.date;
+        case "julian":
+          return gregorian_to_julian(this.date);
+        case "hebrew":
+          return gregorianToHebrew(this.date);
           break;
         default:
           throw new TypeError(`Unknown calendar type: \"${this.calendarType}\"`)

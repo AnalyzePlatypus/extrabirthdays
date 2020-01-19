@@ -124,7 +124,7 @@ export function gregorian_to_jd(year, month, day)
 
 export function jd_to_gregorian(jd) {
     var wjd, depoch, quadricent, dqc, cent, dcent, quad, dquad,
-        yindex, dyindex, year, yearday, leapadj;
+        yindex, dyindex, year, yearday, leapadj, month, day;
 
     wjd = Math.floor(jd - 0.5) + 0.5;
     depoch = wjd - GREGORIAN_EPOCH;

@@ -99,9 +99,9 @@ export function renderHebrewDateToHebrew(hebrewDateObject) {
 
 }
 
-export function hebrewDateToNextGregorianOccurence(originalHebrewDate) {
-  const currentJulianDay = gregorianDateToJulianDay(new Date());
-  const currentHebrewDate = gregorianToHebrew(new Date());
+export function hebrewDateToNextGregorianOccurence(originalHebrewDate, currentDate) {
+  const currentJulianDay = gregorianDateToJulianDay(currentDate);
+  const currentHebrewDate = gregorianToHebrew(currentDate);
   const currentHebrewYear = currentHebrewDate.year;
 
   let projectedHebrewDate = deepClone(originalHebrewDate);
@@ -117,8 +117,8 @@ export function hebrewDateToNextGregorianOccurence(originalHebrewDate) {
   return { calendar: "gregorian", year, month: month - 1, day }
 }
 
-const deepClone = obj => JSON.parse(JSON.stringify(obj));
-
 function hebrewDateToJulianDay({year, month, day}) {
   return hebrew_to_jd(year, month + 1, day)
 }
+
+const deepClone = obj => JSON.parse(JSON.stringify(obj));

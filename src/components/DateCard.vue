@@ -1,15 +1,18 @@
 <template>
-  <div>
-    <h2>{{calendarType}}</h2>
-    <p>{{foreignDate | renderDateObject}}</p>
-    <p>Next on {{foreignDate | nextGregorianOccurence | renderDateObject}}</p>
+  <div class="bg-teal-600 my-2 w-64 max-w-sm p-3 rounded shadow-lg">
+    <h2 class="uppercase text-sm font-medium text-gray-300">{{calendarType}}</h2>
+    <p class="text-white text-2xl">{{foreignDate | renderDateObject}}</p>
+    <p class="text-sm uppercase">
+      <span>That's </span>
+      <span class="font-medium">{{foreignDate | nextGregorianOccurence(currentDate) | renderDateObject}}</span>
+    </p>
   </div>
 </template>
 
 <script>
 import validCalendarNames from "@/util/supportedCalendars.js";
 
-import { gregorian_to_julian } from "@/util/CalendarHelpers.js";
+import { gregorianDateToJulianDate } from "@/util/CalendarHelpers.js";
 
 import { gregorianToHebrew, hebrewDateToNextGregorianOccurence } from "@/util/Convertors/GregorianToHebrew.js";
 
@@ -24,6 +27,11 @@ export default {
     date: {
       type: Date,
       required: true
+    },
+    currentDate: {
+      type: Date,
+      required: false,
+      default: () => new Date()
     }
   },
   methods: {
@@ -34,7 +42,7 @@ export default {
         case "gregorian":
           return  this.date;
         case "julian":
-          return gregorian_to_julian(this.date);
+          return gregorianDateToJulianDate(this.date);
         case "hebrew":
           return gregorianToHebrew(this.date);
           break;
@@ -42,19 +50,6 @@ export default {
           throw new TypeError(`Unknown calendar type: \"${this.calendarType}\"`)
       }
     },
-    dateThisYear() {
-      switch(this.calendarType) {
-        case "gregorian":
-          return  this.date;
-        case "julian":
-          return gregorian_to_julian(this.date);
-        case "hebrew":
-          return gregorianToHebrew(this.date);
-          break;
-        default:
-          throw new TypeError(`Unknown calendar type: \"${this.calendarType}\"`)
-      }
-    }
   }
 };
 </script>

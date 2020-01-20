@@ -6,6 +6,7 @@ import { renderHebrewDateToEnglish } from "@/util/Convertors/GregorianToHebrew.j
 
 export function renderDateObject(dateObject) {
   if(dateObject instanceof Date) return dateObject.toLocaleDateString();
+  if(!dateObject.calendar) return dateObject;
   switch(dateObject.calendar) {
     case "gregorian":
       return renderJulianDate(dateObject); // Gregorian and Julian use the same months

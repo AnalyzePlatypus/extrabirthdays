@@ -5,9 +5,10 @@ Vue.config.productionTip = false
 
 import renderDateObject from "@/filters/renderDateObject.js";
 import nextGregorianOccurence from "@/filters/nextGregorianOccurence.js";
+import './assets/tailwind.css'
 
 Vue.filter("renderDateObject", renderDateObject);
-Vue.filter("nextGregorianOccurence", nextGregorianOccurence); 
+Vue.filter("nextGregorianOccurence", nextGregorianOccurence);
 
 new Vue({
   render: h => h(App),

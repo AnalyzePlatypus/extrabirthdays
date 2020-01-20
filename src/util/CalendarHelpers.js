@@ -1,6 +1,8 @@
 import { 
   gregorian_to_jd, 
+  julian_to_jd,
   jd_to_julian,
+  jd_to_gregorian,
   leap_julian,
   NormLeap,
 } from "@/util/calendar.js";
@@ -30,7 +32,7 @@ import {
 
 const WESTERN_MONTHS = ["January", "February", "March", "April", 'May', "June", "July", "August", "September", "October", "November" ,"December"]
 
-export function gregorian_to_julian(gregorianDate) {
+export function gregorianDateToJulianDate(gregorianDate) {
 
   let julianDay = gregorianDateToJulianDay(gregorianDate);
   
@@ -58,6 +60,18 @@ function getTimeAsSeconds(date) {
   return Math.floor(date.getSeconds() + 60 * (date.getMinutes() + 60 * date.getHours()) + 0.5) / 86400.0;
 }
 
+// Gregorian
+
 export function renderJulianDate({ year, month, day, isLeapYear, weekday}) {
   return `${WESTERN_MONTHS[month]} ${day}, ${year}`;
 }
+
+export function julianDateToJulianDay({year, month, day}) {
+  return julian_to_jd(year, month + 1, day);
+}
+
+export function julianDayToGregorianDate(julianDay) {
+  const [year, month, day] = jd_to_gregorian(julianDay);
+  return { calendar: "gregorian", year, month: month - 1, day }
+}
+

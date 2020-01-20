@@ -13,8 +13,8 @@
 import validCalendarNames from "@/util/supportedCalendars.js";
 
 import { gregorianDateToJulianDate } from "@/util/CalendarHelpers.js";
-
 import { gregorianToHebrew, hebrewDateToNextGregorianOccurence } from "@/util/Convertors/GregorianToHebrew.js";
+import { gregorianToIslamic, islamicDateGetNextGregorianOccurence } from "@/util/calendars/islamic.js";
 
 export default {
   name: 'DateCard',
@@ -45,6 +45,9 @@ export default {
           return gregorianDateToJulianDate(this.date);
         case "hebrew":
           return gregorianToHebrew(this.date);
+          break;
+        case "islamic":
+          return gregorianToIslamic(this.date);
           break;
         default:
           throw new TypeError(`Unknown calendar type: \"${this.calendarType}\"`)

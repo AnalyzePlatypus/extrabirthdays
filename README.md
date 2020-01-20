@@ -3,12 +3,13 @@
 Currently supported calendars:
 - Julian
 - Hebrew
+- Islamic (Hijri)
 
 ## Future?
 
 ### First wave (before public launch)
 
-- Islamic (Hijri)
+
 - Persian
 - Mayan
 - Indian Civil Calendar

@@ -35,7 +35,8 @@ export default {
       queriedDateString: new Date().toDateString(),
       enabledCalendarTypes: [
         "julian",
-        "hebrew"
+        "hebrew",
+        "islamic"
       ],
     };
   },
@@ -46,7 +47,8 @@ export default {
       return new Date(this.queriedDateString);
     },
     formWasEdited() {
-      return this.queriedDateString !== new Date().toDateString()
+      return true;
+      //return this.queriedDateString !== new Date().toDateString()
     }
   },
   components: {

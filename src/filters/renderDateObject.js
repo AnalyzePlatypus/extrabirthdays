@@ -4,16 +4,16 @@ import { renderJulianDate } from "@/util/CalendarHelpers.js";
 import { renderHebrewDateToEnglish } from "@/util/Convertors/GregorianToHebrew.js";
 
 
-export function renderDateObject(dateObject) {
+export function renderDateObject(dateObject, options) {
   if(dateObject instanceof Date) return dateObject.toLocaleDateString();
   if(!dateObject.calendar) return dateObject;
   switch(dateObject.calendar) {
     case "gregorian":
-      return renderJulianDate(dateObject); // Gregorian and Julian use the same months
+      return renderJulianDate(dateObject, options); // Gregorian and Julian use the same months
     case "julian":
-      return renderJulianDate(dateObject);
+      return renderJulianDate(dateObject, options);
     case "hebrew":
-      return renderHebrewDateToEnglish(dateObject);
+      return renderHebrewDateToEnglish(dateObject, options);
     default: 
       console.error(`Unknown calendar type \"${dateObject.calendar}\"`)
       return dateObject

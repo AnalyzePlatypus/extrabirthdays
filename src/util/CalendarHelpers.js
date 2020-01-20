@@ -62,8 +62,8 @@ function getTimeAsSeconds(date) {
 
 // Gregorian
 
-export function renderJulianDate({ year, month, day, isLeapYear, weekday}) {
-  return `${WESTERN_MONTHS[month]} ${day}, ${year}`;
+export function renderJulianDate({ year, month, day, isLeapYear, weekday}, options) {
+  return `${WESTERN_MONTHS[month]} ${day}, ${options && options.hideYear ? "" : year}`;
 }
 
 export function julianDateToJulianDay({year, month, day}) {

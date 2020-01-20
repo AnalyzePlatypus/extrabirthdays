@@ -8,16 +8,16 @@
 
       <div class="-mt-6 flex justify-center">
         <input class="pl-4 pr-4 text-2xl md:text-3xl w-auto border-solid border-teal-900 border-2"
-          type="date" v-model="queriedDate">
+          type="date" v-model="queriedDateString">
       </div>
 
-      <div class="flex flex-col justify-center items-center mt-8">
+      <div class="flex flex-col justify-center items-center mt-8" v-if="formWasEdited">
         <h1 class="uppercase font-medium text-gray-600">Results</h1>
         <DateCard 
           v-for="calendarType of enabledCalendarTypes" 
           :key="calendarType"
           :calendarType="calendarType"
-          :date="queriedDateAsDate"
+          :date="queriedDate"
           />
       </div>
     </div>
@@ -29,22 +29,24 @@
 import DateCard from "@/components/DateCard.vue";
 
 export default {
-  name: 'BirthdayApp',
+  name: 'Home',
   data() {
     return {
-      queriedDate: new Date(),
+      queriedDateString: new Date().toDateString(),
       enabledCalendarTypes: [
-        "gregorian",
         "julian",
         "hebrew"
-      ]
+      ],
     };
   },
   methods: {
   },
   computed: {
-    queriedDateAsDate() {
-      return new Date(this.queriedDate);
+    queriedDate() {
+      return new Date(this.queriedDateString);
+    },
+    formWasEdited() {
+      return this.queriedDateString !== new Date().toDateString()
     }
   },
   components: {

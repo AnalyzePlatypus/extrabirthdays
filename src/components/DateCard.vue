@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-teal-600 my-2 w-64 max-w-sm p-3 rounded shadow-lg">
+  <div class="bg-teal-600 my-2 w-11/12 max-w-xs p-3 rounded shadow-md">
     <h2 class="uppercase text-sm font-medium text-gray-300">{{calendarType}}</h2>
     <p class="text-white text-2xl">{{foreignDate | renderDateObject}}</p>
     <p class="text-sm uppercase">
-      <span>That's </span>
+      <span>Next on </span>
       <span class="font-medium">{{foreignDate | nextGregorianOccurence(currentDate) | renderDateObject}}</span>
     </p>
   </div>

@@ -36,7 +36,8 @@ export default {
       enabledCalendarTypes: [
         "julian",
         "hebrew",
-        "islamic"
+        "islamic",
+        "persian"
       ],
     };
   },

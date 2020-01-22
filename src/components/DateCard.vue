@@ -5,6 +5,7 @@
     <p class="text-sm uppercase">
       <span>Next on </span>
       <span class="font-medium">{{foreignDate | nextGregorianOccurence(currentDate) | renderDateObject}}</span>
+      <!-- <span class="font-medium"> ({{foreignDate | nextGregorianOccurence(currentDate) | toJSDate | timeDifference(new Date(), {displayMode: "full", sign: "text"}) }})</span> -->
     </p>
   </div>
 </template>
@@ -15,6 +16,7 @@ import validCalendarNames from "@/util/supportedCalendars.js";
 import { gregorianDateToJulianDate } from "@/util/CalendarHelpers.js";
 import { gregorianToHebrew, hebrewDateToNextGregorianOccurence } from "@/util/Convertors/GregorianToHebrew.js";
 import { gregorianToIslamic, islamicDateGetNextGregorianOccurence } from "@/util/calendars/islamic.js";
+import { gregorianToPersian } from "@/util/calendars/persian.js";
 
 export default {
   name: 'DateCard',
@@ -48,6 +50,9 @@ export default {
           break;
         case "islamic":
           return gregorianToIslamic(this.date);
+          break;
+        case "persian":
+          return gregorianToPersian(this.date);
           break;
         default:
           throw new TypeError(`Unknown calendar type: \"${this.calendarType}\"`)

@@ -4,15 +4,16 @@ Currently supported calendars:
 - Julian
 - Hebrew
 - Islamic (Hijri)
+- Persian
+- Indian Civil Calendar
 
 ## Future?
 
 ### First wave (before public launch)
 
 
-- Persian
+
 - Mayan
-- Indian Civil Calendar
 - French Republican Calendar
 
 ### Second wave (will require new library and Lambda)

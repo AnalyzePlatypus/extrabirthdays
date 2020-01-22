@@ -7,8 +7,9 @@ import { gregorianToJulian, julianToJulianDay } from "@/util/calendars/julian.js
 import { gregorianToHebrew, hebrewToJulianDay } from "@/util/calendars/hebrew.js";
 import { gregorianToIslamic, islamicToJulianDay } from "@/util/calendars/islamic.js";
 import { gregorianToPersian, persianToJulianDay } from "@/util/calendars/persian.js";
+import { gregorianToIndianCivil, indianCivilToJulianDay } from "@/util/calendars/indian_civil.js";
 
-const enabledCalendars = ["julian", "hebrew", "islamic", "persian"];
+const enabledCalendars = ["julian", "hebrew", "islamic", "persian", "indian_civil"];
 
 export function nextGregorianOccurence(dateObject, currentDate) {
   if(dateObject instanceof Date) return dateObject.toLocaleDateString();
@@ -21,6 +22,7 @@ const GREGORIAN_TO_FOREIGN_DATE_FUNCTIONS = {
   hebrew: gregorianToHebrew,
   islamic: gregorianToIslamic,
   persian: gregorianToPersian,
+  indian_civil: gregorianToIndianCivil
 }
 
 const FOREIGN_DATE_TO_JULIAN_DAY_FUNCTIONS = {
@@ -28,6 +30,7 @@ const FOREIGN_DATE_TO_JULIAN_DAY_FUNCTIONS = {
   hebrew: hebrewToJulianDay,
   islamic: islamicToJulianDay,
   persian: persianToJulianDay,
+  indian_civil: indianCivilToJulianDay
 }
 
 export function getNextGregorianOccurrence(dateObject, currentDate) {

@@ -15,8 +15,9 @@ import validCalendarNames from "@/util/supportedCalendars.js";
 
 import { gregorianDateToJulianDate } from "@/util/CalendarHelpers.js";
 import { gregorianToHebrew } from "@/util/calendars/hebrew.js";
-import { gregorianToIslamic, islamicDateGetNextGregorianOccurence } from "@/util/calendars/islamic.js";
+import { gregorianToIslamic } from "@/util/calendars/islamic.js";
 import { gregorianToPersian } from "@/util/calendars/persian.js";
+import { gregorianToIndianCivil } from "@/util/calendars/indian_civil.js";
 
 export default {
   name: 'DateCard',
@@ -53,6 +54,9 @@ export default {
           break;
         case "persian":
           return gregorianToPersian(this.date);
+          break;
+        case "indian_civil":
+          return gregorianToIndianCivil(this.date);
           break;
         default:
           throw new TypeError(`Unknown calendar type: \"${this.calendarType}\"`)

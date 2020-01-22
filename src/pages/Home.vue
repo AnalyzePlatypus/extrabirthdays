@@ -37,7 +37,8 @@ export default {
         "julian",
         "hebrew",
         "islamic",
-        "persian"
+        "persian",
+        "indian_civil"
       ],
     };
   },
@@ -48,6 +49,7 @@ export default {
       return new Date(this.queriedDateString);
     },
     formWasEdited() {
+      if(process.env.NODE_ENV == "production") return this.queriedDateString !== new Date().toDateString();
       return true;
       //return this.queriedDateString !== new Date().toDateString()
     }

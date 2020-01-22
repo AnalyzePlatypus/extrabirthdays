@@ -865,7 +865,7 @@ export function indian_civil_to_jd(year, month, day)
 
 export function jd_to_indian_civil(jd)
 {
-    var Caitra, Saka, greg, greg0, leap, start, year, yday, mday;
+    var Caitra, Saka, greg, greg0, leap, start, year, yday, mday, month, day;
 
     Saka = 79 - 1;                    // Offset in years from Saka era to Gregorian epoch
     start = 80;                       // Day offset between Saka and Gregorian

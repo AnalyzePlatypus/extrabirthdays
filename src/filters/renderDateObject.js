@@ -1,9 +1,9 @@
 
 import { renderJulianDate } from "@/util/CalendarHelpers.js";
-
 import { renderHebrewDateToEnglish } from "@/util/calendars/hebrew.js";
 import { renderIslamicDateToEnglish } from "@/util/calendars/islamic.js";
 import { renderPersianDateToEnglish } from "@/util/calendars/persian.js";
+import { renderIndianCivilDateToEnglish } from "@/util/calendars/indian_civil.js";
 
 export function renderDateObject(dateObject, options) {
   if(dateObject instanceof Date) return dateObject.toLocaleDateString();
@@ -19,6 +19,8 @@ export function renderDateObject(dateObject, options) {
       return renderIslamicDateToEnglish(dateObject, options);
     case "persian":
         return renderPersianDateToEnglish(dateObject, options);
+    case "indian_civil":
+      return renderIndianCivilDateToEnglish(dateObject, options);
     default: 
       console.error(`Unknown calendar type \"${dateObject.calendar}\"`)
       return dateObject

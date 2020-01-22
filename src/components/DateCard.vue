@@ -14,7 +14,7 @@
 import validCalendarNames from "@/util/supportedCalendars.js";
 
 import { gregorianDateToJulianDate } from "@/util/CalendarHelpers.js";
-import { gregorianToHebrew, hebrewDateToNextGregorianOccurence } from "@/util/Convertors/GregorianToHebrew.js";
+import { gregorianToHebrew } from "@/util/calendars/hebrew.js";
 import { gregorianToIslamic, islamicDateGetNextGregorianOccurence } from "@/util/calendars/islamic.js";
 import { gregorianToPersian } from "@/util/calendars/persian.js";
 

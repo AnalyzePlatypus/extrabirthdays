@@ -1,7 +1,7 @@
 
 import { renderJulianDate } from "@/util/CalendarHelpers.js";
 
-import { renderHebrewDateToEnglish } from "@/util/Convertors/GregorianToHebrew.js";
+import { renderHebrewDateToEnglish } from "@/util/calendars/hebrew.js";
 import { renderIslamicDateToEnglish } from "@/util/calendars/islamic.js";
 import { renderPersianDateToEnglish } from "@/util/calendars/persian.js";
 
